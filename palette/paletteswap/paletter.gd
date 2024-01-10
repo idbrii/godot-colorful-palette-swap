@@ -4,7 +4,7 @@ extends Node
 
 export var primary_palette := "res://palette/in_palettes/base-palette.png"
 
-const sizeX = 80
+const sizeX = 100
 
 var colorData := {}
 
@@ -57,13 +57,14 @@ func createPalette(file:String, centers:Array):
 	colorData[file] = colors
 
 	var out := Image.new()
-	out.create(sizeX, 4, false, Image.FORMAT_RGB8)
+	var sizeY := 1
+	out.create(sizeX, sizeY, false, Image.FORMAT_RGB8)
 	out.lock()
 	var lastBorder := 0.0
 	for i in range(0, colors.size()):
 		var nextBorder = 0.5 * (centers[i] + centers[i+1]) if i < centers.size() - 1 else 1.0
 		for ox in range(lastBorder*sizeX, nextBorder*sizeX):
-			for oy in range(0, 4):
+			for oy in range(0, sizeY):
 				out.set_pixel(ox, oy, colors[i])
 		lastBorder = nextBorder
 	out.unlock()
