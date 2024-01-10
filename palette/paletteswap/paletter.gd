@@ -2,20 +2,22 @@ extends Node
 # To run, add to scene and run scene.
 # https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/
 
+export var primary_palette := "res://palette/in_palettes/base-palette.png"
+
 const sizeX = 80
 
 var colorData := {}
 
 func _ready():
 	var image = Image.new()
-	image.load("res://palette/slso8-base.png")
+	image.load(primary_palette)
 	image.lock()
 
 	var centers := []
 	var lastGrey = grey(image.get_pixel(0, 0))
 	centers.append(lastGrey)
 	for x in range(1, image.get_width()):
-		var c = image.get_pixel(x, 1)
+		var c = image.get_pixel(x, 0)
 		var currentGrey = grey(c)
 		if currentGrey != lastGrey:
 			centers.append(currentGrey)
@@ -73,7 +75,7 @@ func getColors(image:Image)->Array:
 	colors.append(image.get_pixel(0, 0))
 	var lastGrey = grey(image.get_pixel(0, 0))
 	for x in range(1, image.get_width()):
-		var c = image.get_pixel(x, 1)
+		var c = image.get_pixel(x, 0)
 		var currentGrey = grey(c)
 		if currentGrey != lastGrey:
 			colors.append(c)
