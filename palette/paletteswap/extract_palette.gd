@@ -30,10 +30,11 @@ func _ready():
 	for x in size.x:
 		for y in size.y:
 			var c = image.get_pixel(x, y)
-			colors[c] = true
+			colors[c] = c
 
 	var color_list = []
-	for c in colors:
+	for k in colors:
+		var c = colors[k]
 		color_list.append(c)
 
 	color_list.sort_custom(ColorSort, "sort_ascending")
