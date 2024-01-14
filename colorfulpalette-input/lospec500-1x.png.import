@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lospec500-1x.png-25b30120caa68c40404bd529a06490c3.stex"
+path="res://.import/lospec500-1x.png-7629cf05f5bebbabecb59de4f0a8facb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/in_palettes/lospec500-1x.png"
-dest_files=[ "res://.import/lospec500-1x.png-25b30120caa68c40404bd529a06490c3.stex" ]
+source_file="res://colorfulpalette-input/lospec500-1x.png"
+dest_files=[ "res://.import/lospec500-1x.png-7629cf05f5bebbabecb59de4f0a8facb.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pico-8-reduced5.png-abfceabc6e19c3ca3db104da70a477c5.stex"
+path="res://.import/pico-8-reduced5.png-14d8b674b7c2d2ae2075b565aa510235.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/out_palettes/pico-8-reduced5.png"
-dest_files=[ "res://.import/pico-8-reduced5.png-abfceabc6e19c3ca3db104da70a477c5.stex" ]
+source_file="res://colorfulpalette-output/pico-8-reduced5.png"
+dest_files=[ "res://.import/pico-8-reduced5.png-14d8b674b7c2d2ae2075b565aa510235.stex" ]
 
 [params]
 

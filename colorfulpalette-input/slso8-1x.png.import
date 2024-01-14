@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slso8-1x.png-8c6bcd3a06258903b021dc23df717106.stex"
+path="res://.import/slso8-1x.png-80cdad4c4052918d54b75c94777da953.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/in_palettes/slso8-1x.png"
-dest_files=[ "res://.import/slso8-1x.png-8c6bcd3a06258903b021dc23df717106.stex" ]
+source_file="res://colorfulpalette-input/slso8-1x.png"
+dest_files=[ "res://.import/slso8-1x.png-80cdad4c4052918d54b75c94777da953.stex" ]
 
 [params]
 

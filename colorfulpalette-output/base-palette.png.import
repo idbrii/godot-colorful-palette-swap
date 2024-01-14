@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/base-palette.png-deb2d74c5460f61b71eed1b0a9c1438c.stex"
+path="res://.import/base-palette.png-58a87851d75f2809fd21957276fa9d10.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/out_palettes/base-palette.png"
-dest_files=[ "res://.import/base-palette.png-deb2d74c5460f61b71eed1b0a9c1438c.stex" ]
+source_file="res://colorfulpalette-output/base-palette.png"
+dest_files=[ "res://.import/base-palette.png-58a87851d75f2809fd21957276fa9d10.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/facility.png-ede231f41dbb2855fc526e86c4de5be0.stex"
+path="res://.import/facility.png-9eba029498feb116a6589664946f054b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/out_palettes/facility.png"
-dest_files=[ "res://.import/facility.png-ede231f41dbb2855fc526e86c4de5be0.stex" ]
+source_file="res://colorfulpalette-output/facility.png"
+dest_files=[ "res://.import/facility.png-9eba029498feb116a6589664946f054b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/facility.png-00a83e1ee9c35bdd39635cf44ad0573f.stex"
+path="res://.import/facility.png-887dcbd0953a46754f3f63ab37357a43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/paletteswap/in_palettes/facility.png"
-dest_files=[ "res://.import/facility.png-00a83e1ee9c35bdd39635cf44ad0573f.stex" ]
+source_file="res://colorfulpalette-input/facility.png"
+dest_files=[ "res://.import/facility.png-887dcbd0953a46754f3f63ab37357a43.stex" ]
 
 [params]
 
