@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://palette/paletteswap/paletter.gd" type="Script" id=1]
-[ext_resource path="res://palette/paletteswap/extract_palette.gd" type="Script" id=2]
+[ext_resource path="res://addons/colorful-palette-swap/code/swappable_palette.gd" type="Script" id=1]
+[ext_resource path="res://addons/colorful-palette-swap/code/extract_palette.gd" type="Script" id=2]
 
 [node name="Node" type="Node"]
 

@@ -1,11 +1,10 @@
 extends Node
-# To run, add to scene and run scene.
-#
 # Takes an image and generates a palette from its pixels, sorted by brightness.
-export var target_image := "res://games/dreamer_dice/art/breakdown/facility_tiles.png"
 
-const Validate = preload("res://games/dreamer_dice/code/util/validate.gd")
+const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 
+onready var source_image_path_node := $Paths/Input/Value as TextEdit
+onready var output_path_node := $Paths/Output/Value as TextEdit
 
 
 class ColorSort:
@@ -24,9 +23,23 @@ static func find_largest_saturation(color_list):
 			max_color = c
 	return max_color
 
+
 func _ready():
+	print("ready /code/godot/addons/paletteswap/addons/colorful-palette-swap/code/extract_palette.gd")
+	source_image_path_node.text = "res://addons/colorful-palette-swap/in_palettes/facility.png"
+	output_path_node.text = "res://addons/colorful-palette-swap/palette.png"
+	$Button.connect("pressed", self, "_button_pressed")
+
+
+func _button_pressed():
+	print("button pressed")
+	# TODO: Validation
+	return _extract_palette(source_image_path_node.text, output_path_node.text)
+
+
+func _extract_palette(source_image_path: String, output_path: String):
 	var image := Image.new()
-	Validate.ok(image.load(target_image))
+	Validate.ok(image.load(source_image_path))
 	image.lock()
 
 	var size = image.get_size()
@@ -79,12 +92,12 @@ func _ready():
 
 	color_list.sort_custom(ColorSort, "sort_ascending")
 
-	create_palette("palette.png", color_list)
+	create_palette(output_path, color_list)
 
 	print("finished extracting palette")
 
 
-func create_palette(file: String, colors: Array):
+func create_palette(file_path: String, colors: Array):
 	var out := Image.new()
 	var box_width := 1
 	var size_x := colors.size() * box_width
@@ -101,6 +114,11 @@ func create_palette(file: String, colors: Array):
 		i += 1
 	out.unlock()
 
-	Validate.ok(out.save_png("res://palette/" + file))
+	Validate.ok(out.save_png(file_path))
 
 
+
+
+func _on_ExecuteButton_pressed():
+	printt("_on_ExecuteButton_pressed", self)
+	pass # Replace with function body.

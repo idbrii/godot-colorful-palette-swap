@@ -8,3 +8,16 @@
 
 config_version=4
 
+[application]
+
+config/name="ColorfulSwap"
+config/description="An addon to simplify palette swaps."
+run/main_scene="res://addons/colorful-palette-swap/panel/palette_commands.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/colorful-palette-swap/plugin.cfg" )
+
+[mono]
+
+project/assembly_name="UnnamedProject"

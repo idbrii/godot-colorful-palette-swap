@@ -1,16 +1,35 @@
 extends Node
-# To run, add to scene and run scene.
+# Takes a base palette and swap palettes and generates palettes to use with palette_swap.shader.
+# Source:
 # https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/
-
-export var primary_palette := "res://palette/in_palettes/base-palette.png"
 
 const sizeX = 100
 
+onready var primary_palette_path_node := $Paths/BasePalette/Value as TextEdit
+onready var input_path_node := $Paths/Input/Value as TextEdit
+onready var output_path_node := $Paths/Output/Value as TextEdit
+
 var colorData := {}
 
+
 func _ready():
+	$Button.connect("pressed", self, "_button_pressed")
+
+
+func _button_pressed():
+	# TODO: Validation
+	return _generate_palettes(
+		primary_palette_path_node.text,
+		input_path_node.text,
+		output_path_node.text)
+
+
+func _generate_palettes(
+		primary_palette_path: String,
+		input_path: String,
+		output_path: String):
 	var image = Image.new()
-	image.load(primary_palette)
+	image.load(primary_palette_path)
 	image.lock()
 
 	var centers := []
@@ -24,7 +43,7 @@ func _ready():
 			lastGrey = currentGrey
 
 	var dir = Directory.new()
-	dir.open("res://palette/in_palettes")
+	dir.open(input_path)
 	dir.list_dir_begin()
 
 	while true:
@@ -32,12 +51,12 @@ func _ready():
 		if file == "":
 			break
 		elif not file.begins_with(".") and file.ends_with(".png"):
-			createPalette(file, centers)
+			createPalette(file, centers, input_path, output_path)
 
 	dir.list_dir_end()
 
 	var save = File.new()
-	var err = save.open("res://palette/out_palettes/data.json", File.WRITE)
+	var err = save.open(output_path +"/data.json", File.WRITE)
 	if err == 0:
 		save.store_string(JSON.print(colorData))
 		save.close()
@@ -50,9 +69,9 @@ func grey(c:Color)->float:
 	return (c.r * 1.0 + c.g * 1.0 + c.b * 1.0) / 3.0
 
 
-func createPalette(file:String, centers:Array):
+func createPalette(file:String, centers:Array, input_path: String, output_path: String):
 	var image = Image.new()
-	image.load("res://palette/in_palettes/"+file)
+	image.load(input_path + file)
 	var colors := getColors(image)
 	colorData[file] = colors
 
@@ -68,7 +87,7 @@ func createPalette(file:String, centers:Array):
 				out.set_pixel(ox, oy, colors[i])
 		lastBorder = nextBorder
 	out.unlock()
-	out.save_png("res://palette/out_palettes/"+file.substr(0, file.find("."))+".png")
+	out.save_png(output_path + file.substr(0, file.find("."))+".png")
 
 func getColors(image:Image)->Array:
 	image.lock()
@@ -83,3 +102,8 @@ func getColors(image:Image)->Array:
 			lastGrey = currentGrey
 	image.unlock()
 	return colors
+
+
+func _on_ExecuteButton_pressed():
+	print("_on_ExecuteButton_pressed", self)
+	pass # Replace with function body.
