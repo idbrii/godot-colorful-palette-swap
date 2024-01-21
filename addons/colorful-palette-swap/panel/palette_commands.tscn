@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/colorful-palette-swap/code/swappable_palette.gd" type="Script" id=1]
 [ext_resource path="res://addons/colorful-palette-swap/panel/theme.tres" type="Theme" id=2]
 [ext_resource path="res://addons/colorful-palette-swap/code/extract_palette.gd" type="Script" id=3]
 [ext_resource path="res://addons/colorful-palette-swap/panel/toolbar.gd" type="Script" id=4]
+[ext_resource path="res://addons/colorful-palette-swap/code/util/pathedit.gd" type="Script" id=5]
+[ext_resource path="res://addons/colorful-palette-swap/code/invalid_path_popup.gd" type="Script" id=6]
 
 [node name="Toolbar" type="Control"]
 anchor_right = 1.0
@@ -59,44 +61,49 @@ size_flags_vertical = 3
 
 [node name="Input" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths"]
 margin_right = 422.0
-margin_bottom = 14.0
+margin_bottom = 24.0
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Input"]
+margin_top = 5.0
 margin_right = 90.0
-margin_bottom = 14.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "Input"
 
-[node name="Value" type="TextEdit" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Input"]
+[node name="Value" type="LineEdit" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Input"]
 margin_left = 100.0
 margin_right = 422.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 100, 0 )
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 23.157 )
 hint_tooltip = "Path to input base palette."
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "res://"
+text = "res://image.png"
+script = ExtResource( 5 )
 
 [node name="Output" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths"]
-margin_top = 18.0
+margin_top = 28.0
 margin_right = 422.0
-margin_bottom = 32.0
+margin_bottom = 52.0
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Output"]
+margin_top = 5.0
 margin_right = 90.0
-margin_bottom = 14.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "Output"
 
-[node name="Value" type="TextEdit" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Output"]
+[node name="Value" type="LineEdit" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Output"]
 margin_left = 100.0
 margin_right = 422.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 100, 0 )
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 23.157 )
 hint_tooltip = "Path to input base palette."
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "res://"
+text = "res://extracted-palette.png"
+script = ExtResource( 5 )
+path_type = 3
 
 [node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette"]
 margin_left = 432.0
@@ -138,65 +145,73 @@ size_flags_vertical = 3
 
 [node name="BasePalette" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths"]
 margin_right = 406.0
-margin_bottom = 14.0
+margin_bottom = 24.0
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
+margin_top = 5.0
 margin_right = 90.0
-margin_bottom = 14.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "Base"
 
-[node name="Value" type="TextEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
+[node name="Value" type="LineEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
 margin_left = 100.0
 margin_right = 406.0
-margin_bottom = 14.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+hint_tooltip = "Path to input base palette."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "res://palette.png"
+script = ExtResource( 5 )
+
+[node name="Input" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths"]
+margin_top = 28.0
+margin_right = 406.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Input"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "Input"
+
+[node name="Value" type="LineEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Input"]
+margin_left = 100.0
+margin_right = 406.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "Path to input base palette."
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "res://"
-
-[node name="Input" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths"]
-margin_top = 18.0
-margin_right = 406.0
-margin_bottom = 32.0
-
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Input"]
-margin_right = 90.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 90, 0 )
-text = "Input"
-
-[node name="Value" type="TextEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Input"]
-margin_left = 100.0
-margin_right = 406.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 100, 0 )
-hint_tooltip = "Path to input base palette."
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "res://palette/in_palettes"
+script = ExtResource( 5 )
+path_type = 0
 
 [node name="Output" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths"]
-margin_top = 36.0
+margin_top = 56.0
 margin_right = 406.0
-margin_bottom = 50.0
+margin_bottom = 80.0
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Output"]
+margin_top = 5.0
 margin_right = 90.0
-margin_bottom = 14.0
+margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 text = "Output"
 
-[node name="Value" type="TextEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Output"]
+[node name="Value" type="LineEdit" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Paths/Output"]
 margin_left = 100.0
 margin_right = 406.0
-margin_bottom = 14.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "Path to input base palette."
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "res://palette/out_palettes"
+text = "res://"
+script = ExtResource( 5 )
+path_type = 0
 
 [node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes"]
 margin_left = 416.0
@@ -206,3 +221,11 @@ margin_bottom = 101.0
 rect_min_size = Vector2( 0, 70 )
 size_flags_vertical = 4
 text = "Generate"
+
+[node name="InvalidPathPopup" type="AcceptDialog" parent="ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 123.0
+margin_bottom = 58.0
+window_title = "Invalid path"
+resizable = true
+script = ExtResource( 6 )

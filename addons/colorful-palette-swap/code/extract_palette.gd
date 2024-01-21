@@ -4,8 +4,8 @@ extends Node
 
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 
-onready var source_image_path_node := $Paths/Input/Value as TextEdit
-onready var output_path_node := $Paths/Output/Value as TextEdit
+onready var source_image_path_node := $Paths/Input/Value as LineEdit
+onready var output_path_node := $Paths/Output/Value as LineEdit
 
 
 class ColorSort:
@@ -26,15 +26,18 @@ static func find_largest_saturation(color_list):
 
 
 func _ready():
-	source_image_path_node.text = "res://addons/colorful-palette-swap/in_palettes/facility.png"
-	output_path_node.text = "res://addons/colorful-palette-swap/palette.png"
 	$Button.connect("pressed", self, "_button_pressed")
 
 
 func _button_pressed():
-	print("button pressed")
-	# TODO: Validation
-	return _extract_palette(source_image_path_node.text, output_path_node.text)
+	if not source_image_path_node.is_valid():
+		$"%InvalidPathPopup".show_complaint("Input requires a png file.")
+	elif not output_path_node.is_valid():
+		$"%InvalidPathPopup".show_complaint("Output requires a png file.")
+	else:
+		return _extract_palette(
+			source_image_path_node.get_path(), 
+			output_path_node.get_path())
 
 
 func _extract_palette(source_image_path: String, output_path: String):

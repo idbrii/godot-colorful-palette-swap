@@ -6,9 +6,9 @@ extends Node
 
 const sizeX = 100
 
-onready var primary_palette_path_node := $Paths/BasePalette/Value as TextEdit
-onready var input_path_node := $Paths/Input/Value as TextEdit
-onready var output_path_node := $Paths/Output/Value as TextEdit
+onready var primary_palette_path_node := $Paths/BasePalette/Value as LineEdit
+onready var input_path_node := $Paths/Input/Value as LineEdit
+onready var output_path_node := $Paths/Output/Value as LineEdit
 
 var colorData := {}
 
@@ -18,11 +18,17 @@ func _ready():
 
 
 func _button_pressed():
-	# TODO: Validation
-	return _generate_palettes(
-		primary_palette_path_node.text,
-		input_path_node.text,
-		output_path_node.text)
+	if not primary_palette_path_node.is_valid():
+		$"%InvalidPathPopup".show_complaint("Base requires a png file.")
+	elif not input_path_node.is_valid():
+		$"%InvalidPathPopup".show_complaint("Input requires an existing directory.")
+	elif not output_path_node.is_valid():
+		$"%InvalidPathPopup".show_complaint("Output requires an existing directory.")
+	else:
+		return _generate_palettes(
+			primary_palette_path_node.get_path(),
+			input_path_node.get_path(),
+			output_path_node.get_path())
 
 
 func ensure_folder(path: String):
