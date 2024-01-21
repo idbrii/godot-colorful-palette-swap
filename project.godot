@@ -16,7 +16,7 @@ run/main_scene="res://addons/colorful-palette-swap/panel/palette_commands.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/colorful-palette-swap/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/colorful-palette-swap/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/toggle-external-editor/plugin.cfg" )
 
 [importer_defaults]
 
