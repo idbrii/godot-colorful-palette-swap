@@ -4,8 +4,11 @@ extends Node
 
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 
+enum FilterMethod { ALL, GREY_VALUE, HUE }
+
 onready var source_image_path_node := $Paths/Input/Value as LineEdit
 onready var output_path_node := $Paths/Output/Value as LineEdit
+onready var filter_node := $Paths/Filter/Value as OptionButton
 
 
 class ColorSort:
@@ -13,9 +16,15 @@ class ColorSort:
 		return (c.r * 1.0 + c.g * 1.0 + c.b * 1.0) / 3.0
 
 
-	static func sort_ascending(a, b):
-		# Sort by grey because I think that matches what paletter is expecting.
+	static func sort_grey(a, b):
+		# Sort by grey because I think that matches what swappable_palette.gd is expecting.
 		return grey(a) < grey(b)
+
+	static func sort_hue(a, b):
+		if a.h == b.h:
+			return a.v < b.v
+		return a.h < b.h
+
 
 static func find_largest_saturation(color_list):
 	var max_color = color_list[0]
@@ -27,6 +36,9 @@ static func find_largest_saturation(color_list):
 
 func _ready():
 	$Button.connect("pressed", self, "_button_pressed")
+	filter_node.clear()
+	for k in FilterMethod.keys():
+		filter_node.add_item(k.capitalize())
 
 
 func _button_pressed():
@@ -37,10 +49,12 @@ func _button_pressed():
 	else:
 		return extract_palette(
 			source_image_path_node.get_path(), 
-			output_path_node.get_path())
+			output_path_node.get_path(),
+			filter_node.selected
+			)
 
 
-static func extract_palette(source_image_path: String, output_path: String):
+static func extract_palette(source_image_path: String, output_path: String, filter):
 	var image := Image.new()
 	Validate.ok(image.load(source_image_path))
 	image.lock()
@@ -58,42 +72,44 @@ static func extract_palette(source_image_path: String, output_path: String):
 
 	var color_list := []
 
-	# TODO: make an exported dropdown for this.
-	var filter_by_grey = true
+	if hues.size() > 200 and filter == FilterMethod.ALL:
+		# Too many colours to save all.
+		filter = FilterMethod.GREY_VALUE
 
-	if hues.size() < 200:
-		# Include all colours (pixel art).
-		for k in colors:
-			var c = colors[k]
-			color_list.append(c)
-
-	elif filter_by_grey:
-		var greys := []
-		for k in colors:
-			var c = colors[k]
-			greys.append(c)
-
-		greys.sort_custom(ColorSort, "sort_ascending")
-		var last_grey := -1.0
-		for c in greys:
-			var g = ColorSort.grey(c)
-			var delta = g - last_grey
-			if delta > 0.1:
+	match filter:
+		FilterMethod.ALL:
+			# Include all colours (pixel art).
+			for k in colors:
+				var c = colors[k]
 				color_list.append(c)
-				last_grey = g
 
-	else:
-		# Limit hues
-		var last_hue := -1.0
-		for h in hues:
-			var delta = h - last_hue
-			if delta > 0.005:
-				var c = find_largest_saturation(hues[h])
-				color_list.append(c)
-				last_hue = h
+		FilterMethod.GREY_VALUE:
+			var greys := []
+			for k in colors:
+				var c = colors[k]
+				greys.append(c)
+
+			greys.sort_custom(ColorSort, "sort_grey")
+			var last_grey := -1.0
+			for c in greys:
+				var g = ColorSort.grey(c)
+				var delta = g - last_grey
+				if delta > 0.1:
+					color_list.append(c)
+					last_grey = g
+
+		FilterMethod.HUE:
+			# Limit hues
+			var last_hue := -1.0
+			for h in hues:
+				var delta = h - last_hue
+				if delta > 0.005:
+					var c = find_largest_saturation(hues[h])
+					color_list.append(c)
+					last_hue = h
 
 
-	color_list.sort_custom(ColorSort, "sort_ascending")
+	color_list.sort_custom(ColorSort, "sort_grey")
 
 	create_palette(output_path, color_list)
 

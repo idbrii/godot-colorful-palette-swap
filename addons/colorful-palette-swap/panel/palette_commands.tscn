@@ -105,6 +105,28 @@ text = "res://extracted-palette.png"
 script = ExtResource( 5 )
 path_type = 3
 
+[node name="Filter" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths"]
+margin_top = 56.0
+margin_right = 422.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Filter"]
+margin_top = 3.0
+margin_right = 90.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 90, 0 )
+text = "Colour Filter"
+
+[node name="Value" type="OptionButton" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Paths/Filter"]
+margin_left = 100.0
+margin_right = 422.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "All"
+items = [ "All", null, false, 0, null, "Grey Value", null, false, 1, null, "Hue", null, false, 2, null ]
+selected = 0
+
 [node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/Extract/ExtractPalette"]
 margin_left = 432.0
 margin_top = 31.0
