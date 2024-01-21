@@ -1,3 +1,4 @@
+tool
 extends Node
 # Takes a base palette and swap palettes and generates palettes to use with palette_swap.shader.
 # Source:
@@ -24,10 +25,20 @@ func _button_pressed():
 		output_path_node.text)
 
 
+func ensure_folder(path: String):
+	if not path.ends_with("/"):
+		path += "/"
+	return path
+
+
 func _generate_palettes(
 		primary_palette_path: String,
 		input_path: String,
 		output_path: String):
+
+	input_path = ensure_folder(input_path)
+	output_path = ensure_folder(output_path)
+
 	var image = Image.new()
 	image.load(primary_palette_path)
 	image.lock()

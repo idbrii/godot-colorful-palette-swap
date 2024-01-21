@@ -1,3 +1,4 @@
+tool
 extends Node
 # Takes an image and generates a palette from its pixels, sorted by brightness.
 
@@ -25,7 +26,6 @@ static func find_largest_saturation(color_list):
 
 
 func _ready():
-	print("ready /code/godot/addons/paletteswap/addons/colorful-palette-swap/code/extract_palette.gd")
 	source_image_path_node.text = "res://addons/colorful-palette-swap/in_palettes/facility.png"
 	output_path_node.text = "res://addons/colorful-palette-swap/palette.png"
 	$Button.connect("pressed", self, "_button_pressed")
@@ -94,7 +94,7 @@ func _extract_palette(source_image_path: String, output_path: String):
 
 	create_palette(output_path, color_list)
 
-	print("finished extracting palette")
+	printt("finished extracting palette to:", output_path)
 
 
 func create_palette(file_path: String, colors: Array):

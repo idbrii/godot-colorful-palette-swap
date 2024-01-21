@@ -206,6 +206,3 @@ margin_bottom = 101.0
 rect_min_size = Vector2( 0, 70 )
 size_flags_vertical = 4
 text = "Generate"
-
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/Extract/ExtractPalette/Button" to="ScrollContainer/HBoxContainer/Extract/ExtractPalette" method="_on_ExecuteButton_pressed"]
-[connection signal="pressed" from="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes/Button" to="ScrollContainer/HBoxContainer/Swap/GenerateSwapPalettes" method="_on_ExecuteButton_pressed"]
