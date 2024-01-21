@@ -35,12 +35,12 @@ func _button_pressed():
 	elif not output_path_node.is_valid():
 		$"%InvalidPathPopup".show_complaint("Output requires a png file.")
 	else:
-		return _extract_palette(
+		return extract_palette(
 			source_image_path_node.get_path(), 
 			output_path_node.get_path())
 
 
-func _extract_palette(source_image_path: String, output_path: String):
+static func extract_palette(source_image_path: String, output_path: String):
 	var image := Image.new()
 	Validate.ok(image.load(source_image_path))
 	image.lock()
@@ -100,7 +100,7 @@ func _extract_palette(source_image_path: String, output_path: String):
 	printt("finished extracting palette to:", output_path)
 
 
-func create_palette(file_path: String, colors: Array):
+static func create_palette(file_path: String, colors: Array):
 	var out := Image.new()
 	var box_width := 1
 	var size_x := colors.size() * box_width

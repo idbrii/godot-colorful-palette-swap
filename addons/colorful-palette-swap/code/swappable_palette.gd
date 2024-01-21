@@ -10,7 +10,6 @@ onready var primary_palette_path_node := $Paths/BasePalette/Value as LineEdit
 onready var input_path_node := $Paths/Input/Value as LineEdit
 onready var output_path_node := $Paths/Output/Value as LineEdit
 
-var colorData := {}
 
 
 func _ready():
@@ -25,26 +24,16 @@ func _button_pressed():
 	elif not output_path_node.is_valid():
 		$"%InvalidPathPopup".show_complaint("Output requires an existing directory.")
 	else:
-		return _generate_palettes(
+		return generate_palettes(
 			primary_palette_path_node.get_path(),
 			input_path_node.get_path(),
 			output_path_node.get_path())
 
 
-func ensure_folder(path: String):
-	if not path.ends_with("/"):
-		path += "/"
-	return path
-
-
-func _generate_palettes(
+static func generate_palettes(
 		primary_palette_path: String,
 		input_path: String,
 		output_path: String):
-
-	input_path = ensure_folder(input_path)
-	output_path = ensure_folder(output_path)
-
 	var image = Image.new()
 	image.load(primary_palette_path)
 	image.lock()
@@ -63,34 +52,35 @@ func _generate_palettes(
 	dir.open(input_path)
 	dir.list_dir_begin()
 
+	var color_data := {}
 	while true:
 		var file = dir.get_next()
 		if file == "":
 			break
 		elif not file.begins_with(".") and file.ends_with(".png"):
-			createPalette(file, centers, input_path, output_path)
+			createPalette(file, centers, input_path, output_path, color_data)
 
 	dir.list_dir_end()
 
 	var save = File.new()
 	var err = save.open(output_path +"/data.json", File.WRITE)
 	if err == 0:
-		save.store_string(JSON.print(colorData))
+		save.store_string(JSON.print(color_data))
 		save.close()
 	else:
 		print("failed to save color data file")
 
 	print("finished generating palettes")
 
-func grey(c:Color)->float:
+static func grey(c: Color) -> float:
 	return (c.r * 1.0 + c.g * 1.0 + c.b * 1.0) / 3.0
 
 
-func createPalette(file:String, centers:Array, input_path: String, output_path: String):
+static func createPalette(file:String, centers:Array, input_path: String, output_path: String, color_data):
 	var image = Image.new()
 	image.load(input_path + file)
 	var colors := getColors(image)
-	colorData[file] = colors
+	color_data[file] = colors
 
 	var out := Image.new()
 	var sizeY := 1
@@ -106,7 +96,7 @@ func createPalette(file:String, centers:Array, input_path: String, output_path: 
 	out.unlock()
 	out.save_png(output_path + file.substr(0, file.find("."))+".png")
 
-func getColors(image:Image)->Array:
+static func getColors(image: Image) -> Array:
 	image.lock()
 	var colors := []
 	colors.append(image.get_pixel(0, 0))
