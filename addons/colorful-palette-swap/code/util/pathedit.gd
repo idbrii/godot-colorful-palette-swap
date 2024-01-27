@@ -76,7 +76,7 @@ func is_valid():
 
 # Assigning to text or calling set_text externally doesn't trigger
 # text_changed, so use this to ensure validation updates.
-func set_text_and_validate(new_text):
-	self.text = new_text
+func set_path_and_validate(new_path):
+	self.text = new_path
 	# Assignment doesn't always trigger text_changed, so call manually.
 	_on_text_changed(self.text)

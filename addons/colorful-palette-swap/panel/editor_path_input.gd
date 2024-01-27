@@ -41,8 +41,14 @@ func _on_pick_file_button():
 func _on_path_selected(path):
 	# Note: popup.current_* aren't valid to fetch and sometimes contain
 	# multiple concatenated paths.
-	$Value.set_text_and_validate(path)
+	set_path_and_validate(path)
 
 
 func get_path():
 	return $Value.get_path()
+
+func is_valid():
+	return $Value.is_valid()
+
+func set_path_and_validate(path):
+	$Value.set_path_and_validate(path)

@@ -4,14 +4,14 @@ extends Node
 
 signal process_complete(output_filepath)  # String
 
-const PathEdit = preload("res://addons/colorful-palette-swap/code/util/pathedit.gd")
+const EditorPathInput = preload("res://addons/colorful-palette-swap/panel/editor_path_input.gd")
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 const Widget = preload("res://addons/colorful-palette-swap/code/util/widget.gd")
 
 enum FilterMethod { ALL, GREY_VALUE, HUE }
 
-onready var source_image_path_node := $Paths/Input/Value as PathEdit
-onready var output_path_node := $Paths/Output/Value as PathEdit
+onready var source_image_path_node := $Paths/Input as EditorPathInput
+onready var output_path_node := $Paths/Output as EditorPathInput
 onready var filter_node := $Paths/Filter/Value as OptionButton
 
 

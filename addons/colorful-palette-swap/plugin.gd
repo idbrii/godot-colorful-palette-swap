@@ -40,8 +40,8 @@ func _extract_palette(__):
 
 	var popup := _show_popup(ExtractPalettePopup.instance(), MENUITEM_EXTRACT_PALETTE)
 	var extract_palette = popup.get_node("%ExtractPalette")
-	extract_palette.source_image_path_node.set_text_and_validate(source_image_path)
-	extract_palette.output_path_node.set_text_and_validate(output_path)
+	extract_palette.source_image_path_node.set_path_and_validate(source_image_path)
+	extract_palette.output_path_node.set_path_and_validate(output_path)
 	extract_palette.connect("process_complete", self, "_on_process_complete")
 
 
@@ -51,9 +51,9 @@ func _swappable_palette(__):
 	var output_path := "res://colorfulpalette-output/"
 	var popup := _show_popup(SwappablePalettePopup.instance(), MENUITEM_SWAPPABLE_PALETTE)
 	var swappable_palette = popup.get_node("%GenerateSwapPalettes")
-	swappable_palette.primary_palette_path_node.set_text_and_validate(source_image_path)
-	swappable_palette.input_path_node.set_text_and_validate(input_path)
-	swappable_palette.output_path_node.set_text_and_validate(output_path)
+	swappable_palette.primary_palette_path_node.set_path_and_validate(source_image_path)
+	swappable_palette.input_path_node.set_path_and_validate(input_path)
+	swappable_palette.output_path_node.set_path_and_validate(output_path)
 	swappable_palette.connect("process_complete", self, "_on_process_complete")
 
 

@@ -6,11 +6,12 @@ extends Node
 
 signal process_complete(output_filepath)  # String
 
+const EditorPathInput = preload("res://addons/colorful-palette-swap/panel/editor_path_input.gd")
 const sizeX = 100
 
-onready var primary_palette_path_node := $Paths/BasePalette/Value as LineEdit
-onready var input_path_node := $Paths/Input/Value as LineEdit
-onready var output_path_node := $Paths/Output/Value as LineEdit
+onready var primary_palette_path_node := $Paths/BasePalette as EditorPathInput
+onready var input_path_node := $Paths/Input as EditorPathInput
+onready var output_path_node := $Paths/Output as EditorPathInput
 
 
 
