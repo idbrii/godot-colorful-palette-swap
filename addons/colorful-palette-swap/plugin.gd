@@ -31,7 +31,6 @@ func _show_popup(popup: WindowDialog, title: String) -> WindowDialog:
 	popup.popup_centered()
 	popup.set_as_minsize()
 	popup.window_title = title
-	popup.connect("popup_hide", self, "_rescan_filesystem")
 	return popup
 	
 
@@ -43,6 +42,7 @@ func _extract_palette(__):
 	var extract_palette = popup.get_node("%ExtractPalette")
 	extract_palette.source_image_path_node.set_text_and_validate(source_image_path)
 	extract_palette.output_path_node.set_text_and_validate(output_path)
+	extract_palette.connect("process_complete", self, "_on_process_complete")
 
 
 func _swappable_palette(__):
@@ -54,6 +54,7 @@ func _swappable_palette(__):
 	swappable_palette.primary_palette_path_node.set_text_and_validate(source_image_path)
 	swappable_palette.input_path_node.set_text_and_validate(input_path)
 	swappable_palette.output_path_node.set_text_and_validate(output_path)
+	swappable_palette.connect("process_complete", self, "_on_process_complete")
 
 
 func _exit_tree():
@@ -64,6 +65,7 @@ func _exit_tree():
 	remove_tool_menu_item(MENUITEM_SWAPPABLE_PALETTE)
 
 
-func _rescan_filesystem():
+func _on_process_complete(output_filepath: String):
 	get_editor_interface().get_resource_filesystem().scan()
+	get_editor_interface().select_file(output_filepath)
 

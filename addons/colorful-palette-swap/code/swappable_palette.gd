@@ -4,7 +4,7 @@ extends Node
 # Source:
 # https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/
 
-signal process_complete()
+signal process_complete(output_filepath)  # String
 
 const sizeX = 100
 
@@ -30,7 +30,7 @@ func _button_pressed():
 			primary_palette_path_node.get_path(),
 			input_path_node.get_path(),
 			output_path_node.get_path())
-		emit_signal("process_complete")
+		emit_signal("process_complete", output_path_node.get_path())
 
 
 static func generate_palettes(
