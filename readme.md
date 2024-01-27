@@ -1,3 +1,36 @@
+# Colorful Swap
+
+A way to make palette swaps while authoring your base palette in full colour.
+
+Adds two entries to the Project > Tools menu:
+1. Extract Palette
+2. Create Swap Palettes
+
+
+# Extract Palette
+
+Take an image (pixel art, non pixel art, anything) and extract a palette from
+it by examining the pixels. Operates with one of three Colour Filters:
+* All - Use all colours. Good only for pixel art using a limited palette.
+* GreyValue - Select colours based on their grey value. When your input image
+  uses many colours, this filters those colours to ones with significantly
+  different **average** values.
+* Hue - Select colours based on their hue value. For many colours in input,
+  filters those colours to ones with significantly different **hue** values.
+
+
+# Create Swap Palettes
+
+This is based on [blippinbits' post about palette
+swaps](https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/).
+Given a base palette (that your art is authored in) and a folder full of
+palettes to make swaps from, it generates palettes to use with the included
+[res://addons/colorful-palette-swap/code/palette_swap.shader](addons/colorful-palette-swap/code/palette_swap.shader).
+
+At runtime, you can set the palette field in the material for that shader and
+it will swap to that palette.
+
+## [blippinbits post explaining how it works](https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/)
 Hey there!
 
 I was always interested in palette swaps, especially for out current game in
@@ -71,4 +104,3 @@ stupid to find :D
 
 -blippinbits
 
-https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/
