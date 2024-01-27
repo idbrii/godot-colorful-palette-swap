@@ -2,12 +2,13 @@ tool
 extends Node
 # Takes an image and generates a palette from its pixels, sorted by brightness.
 
+const PathEdit = preload("res://addons/colorful-palette-swap/code/util/pathedit.gd")
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 
 enum FilterMethod { ALL, GREY_VALUE, HUE }
 
-onready var source_image_path_node := $Paths/Input/Value as LineEdit
-onready var output_path_node := $Paths/Output/Value as LineEdit
+onready var source_image_path_node := $Paths/Input/Value as PathEdit
+onready var output_path_node := $Paths/Output/Value as PathEdit
 onready var filter_node := $Paths/Filter/Value as OptionButton
 
 
