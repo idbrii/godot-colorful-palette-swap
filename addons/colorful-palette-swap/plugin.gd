@@ -13,11 +13,13 @@ var bar_btn: ToolButton
 
 
 func _enter_tree():
-	bar = bar_scene.instance()
-	bar.plugin = self
-	bar_btn = add_control_to_bottom_panel(bar, "Colorful Swap")
-	# Need extra space to push above toolbar buttons. Bottom margin didn't work.
-	bar.rect_min_size.y = bar.rect_size.y + 50
+	# Don't add the bottom bar because this isn't a frequent enough action to
+	# require having it around all the time.
+	#~ bar = bar_scene.instance()
+	#~ bar.plugin = self
+	#~ bar_btn = add_control_to_bottom_panel(bar, "Colorful Swap")
+	#~ # Need extra space to push above toolbar buttons. Bottom margin didn't work.
+	#~ bar.rect_min_size.y = bar.rect_size.y + 50
 
 	add_tool_menu_item(MENUITEM_EXTRACT_PALETTE, self, "_extract_palette")
 	add_tool_menu_item(MENUITEM_SWAPPABLE_PALETTE, self, "_swappable_palette")
