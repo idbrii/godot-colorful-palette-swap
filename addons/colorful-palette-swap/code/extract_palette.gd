@@ -6,6 +6,7 @@ signal process_complete(output_filepath)  # String
 
 const PathEdit = preload("res://addons/colorful-palette-swap/code/util/pathedit.gd")
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
+const Widget = preload("res://addons/colorful-palette-swap/code/util/widget.gd")
 
 enum FilterMethod { ALL, GREY_VALUE, HUE }
 
@@ -39,6 +40,7 @@ static func find_largest_saturation(color_list):
 
 func _ready():
 	$Button.connect("pressed", self, "_button_pressed")
+	Widget.setup_dropdown_from_enum(filter_node, FilterMethod)
 	filter_node.clear()
 	for k in FilterMethod.keys():
 		filter_node.add_item(k.capitalize())
