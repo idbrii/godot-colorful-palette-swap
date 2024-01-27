@@ -14,6 +14,7 @@ margin_right = 90.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
 hint_tooltip = "A file path."
+mouse_filter = 1
 text = "Path"
 
 [node name="PathValue" type="LineEdit" parent="."]
