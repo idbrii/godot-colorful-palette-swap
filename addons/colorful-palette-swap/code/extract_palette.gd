@@ -2,6 +2,8 @@ tool
 extends Node
 # Takes an image and generates a palette from its pixels, sorted by brightness.
 
+signal process_complete()
+
 const PathEdit = preload("res://addons/colorful-palette-swap/code/util/pathedit.gd")
 const Validate = preload("res://addons/colorful-palette-swap/code/util/validate.gd")
 
@@ -48,11 +50,12 @@ func _button_pressed():
 	elif not output_path_node.is_valid():
 		$"%InvalidPathPopup".show_complaint("Output requires a png file.")
 	else:
-		return extract_palette(
+		extract_palette(
 			source_image_path_node.get_path(), 
 			output_path_node.get_path(),
 			filter_node.selected
 			)
+		emit_signal("process_complete")
 
 
 static func extract_palette(source_image_path: String, output_path: String, filter):

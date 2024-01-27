@@ -4,6 +4,8 @@ extends Node
 # Source:
 # https://www.reddit.com/r/godot/comments/pqtqmh/palette_swaps_without_making_every_sprite/
 
+signal process_complete()
+
 const sizeX = 100
 
 onready var primary_palette_path_node := $Paths/BasePalette/Value as LineEdit
@@ -24,10 +26,11 @@ func _button_pressed():
 	elif not output_path_node.is_valid():
 		$"%InvalidPathPopup".show_complaint("Output requires an existing directory.")
 	else:
-		return generate_palettes(
+		generate_palettes(
 			primary_palette_path_node.get_path(),
 			input_path_node.get_path(),
 			output_path_node.get_path())
+		emit_signal("process_complete")
 
 
 static func generate_palettes(
