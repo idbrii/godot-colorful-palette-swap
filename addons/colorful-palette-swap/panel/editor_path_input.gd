@@ -10,18 +10,18 @@ export(PathEdit.PathType) var path_type := PathEdit.PathType.EXISTING_FILE
 
 func _ready():
 	$Label.text = label
-	$Value.path_type = path_type
+	$PathValue.path_type = path_type
 	$Label.hint_tooltip = path_tooltip
-	$Value.hint_tooltip = path_tooltip
+	$PathValue.hint_tooltip = path_tooltip
 	$PickFileButton.connect("pressed", self, "_on_pick_file_button")
 
 
 func _on_pick_file_button():
 	var popup := EditorFileDialog.new()
 	popup.disable_overwrite_warning = false
-	popup.current_file = $Value.get_path()
+	popup.current_file = $PathValue.get_path()
 
-	match $Value.path_type:
+	match $PathValue.path_type:
 		PathEdit.PathType.EXISTING_DIRECTORY, PathEdit.PathType.NEW_DIRECTORY:
 			popup.mode = EditorFileDialog.MODE_OPEN_DIR
 			popup.display_mode = EditorFileDialog.DISPLAY_LIST
@@ -45,10 +45,10 @@ func _on_path_selected(path):
 
 
 func get_path():
-	return $Value.get_path()
+	return $PathValue.get_path()
 
 func is_valid():
-	return $Value.is_valid()
+	return $PathValue.is_valid()
 
 func set_path_and_validate(path):
-	$Value.set_path_and_validate(path)
+	$PathValue.set_path_and_validate(path)

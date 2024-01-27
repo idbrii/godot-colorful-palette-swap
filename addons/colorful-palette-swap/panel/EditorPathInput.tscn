@@ -7,22 +7,21 @@
 margin_right = 465.0
 margin_bottom = 24.0
 script = ExtResource( 2 )
-path_tooltip = "A file path."
 
 [node name="Label" type="Label" parent="."]
 margin_top = 5.0
 margin_right = 90.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 90, 0 )
-hint_tooltip = "A file path"
+hint_tooltip = "A file path."
 text = "Path"
 
-[node name="Value" type="LineEdit" parent="."]
+[node name="PathValue" type="LineEdit" parent="."]
 margin_left = 94.0
 margin_right = 437.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 100, 23.157 )
-hint_tooltip = "A file path"
+hint_tooltip = "A file path."
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "res://image.png"
