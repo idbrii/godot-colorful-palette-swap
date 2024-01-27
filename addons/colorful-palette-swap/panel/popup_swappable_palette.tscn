@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/colorful-palette-swap/code/swappable_palette.gd" type="Script" id=1]
 [ext_resource path="res://addons/colorful-palette-swap/panel/theme.tres" type="Theme" id=2]
 [ext_resource path="res://addons/colorful-palette-swap/panel/processingpopup.gd" type="Script" id=3]
-[ext_resource path="res://addons/colorful-palette-swap/code/util/pathedit.gd" type="Script" id=5]
+[ext_resource path="res://addons/colorful-palette-swap/panel/EditorPathInput.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/colorful-palette-swap/code/invalid_path_popup.gd" type="Script" id=6]
 
 [node name="SwappablePalettePopup" type="WindowDialog"]
@@ -56,81 +56,19 @@ margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BasePalette" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
-margin_right = 599.0
-margin_bottom = 24.0
+[node name="BasePalette" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths" instance=ExtResource( 4 )]
+label = "Base"
+path_tooltip = "Path to input base palette."
 
-[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
-margin_top = 5.0
-margin_right = 90.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 90, 0 )
-text = "Base"
-
-[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
-margin_left = 100.0
-margin_right = 599.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
-hint_tooltip = "Path to input base palette."
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "res://palette.png"
-caret_blink = true
-caret_blink_speed = 0.5
-script = ExtResource( 5 )
-
-[node name="Input" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
-margin_top = 28.0
-margin_right = 599.0
-margin_bottom = 52.0
-
-[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Input"]
-margin_top = 5.0
-margin_right = 90.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 90, 0 )
-text = "Input"
-
-[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Input"]
-margin_left = 100.0
-margin_right = 599.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
-hint_tooltip = "Path to input base palette."
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "res://"
-caret_blink = true
-caret_blink_speed = 0.5
-script = ExtResource( 5 )
+[node name="Input" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths" instance=ExtResource( 4 )]
+label = "Input"
+path_tooltip = "Path to input swap palettes."
 path_type = 0
 
-[node name="Output" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
-margin_top = 56.0
-margin_right = 599.0
-margin_bottom = 80.0
-
-[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Output"]
-margin_top = 5.0
-margin_right = 90.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 90, 0 )
-text = "Output"
-
-[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Output"]
-margin_left = 100.0
-margin_right = 599.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
-hint_tooltip = "Path to input base palette."
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "res://"
-caret_blink = true
-caret_blink_speed = 0.5
-script = ExtResource( 5 )
-path_type = 0
+[node name="Output" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths" instance=ExtResource( 4 )]
+label = "Output"
+path_tooltip = "Path to write generated swap palettes that you'll use in the shader."
+path_type = 2
 
 [node name="Button" type="Button" parent="ScrollContainer/Swap/GenerateSwapPalettes"]
 margin_left = 609.0
