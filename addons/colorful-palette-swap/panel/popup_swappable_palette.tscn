@@ -1,0 +1,149 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/colorful-palette-swap/code/swappable_palette.gd" type="Script" id=1]
+[ext_resource path="res://addons/colorful-palette-swap/panel/theme.tres" type="Theme" id=2]
+[ext_resource path="res://addons/colorful-palette-swap/code/util/pathedit.gd" type="Script" id=5]
+[ext_resource path="res://addons/colorful-palette-swap/code/invalid_path_popup.gd" type="Script" id=6]
+
+[node name="SwappablePalettePopup" type="WindowDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -474.0
+margin_bottom = -450.0
+rect_min_size = Vector2( 700, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_vertical_enabled = false
+
+[node name="Swap" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 680.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/Swap"]
+margin_right = 680.0
+margin_bottom = 14.0
+text = "Generate Swappable Palettes"
+
+[node name="GenerateSwapPalettes" type="HBoxContainer" parent="ScrollContainer/Swap"]
+unique_name_in_owner = true
+margin_top = 18.0
+margin_right = 680.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Paths" type="VBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes"]
+margin_right = 599.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BasePalette" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
+margin_right = 599.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "Base"
+
+[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/BasePalette"]
+margin_left = 100.0
+margin_right = 599.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+hint_tooltip = "Path to input base palette."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "res://palette.png"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 5 )
+
+[node name="Input" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
+margin_top = 28.0
+margin_right = 599.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Input"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "Input"
+
+[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Input"]
+margin_left = 100.0
+margin_right = 599.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+hint_tooltip = "Path to input base palette."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "res://"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 5 )
+path_type = 0
+
+[node name="Output" type="HBoxContainer" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths"]
+margin_top = 56.0
+margin_right = 599.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Output"]
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 90, 0 )
+text = "Output"
+
+[node name="Value" type="LineEdit" parent="ScrollContainer/Swap/GenerateSwapPalettes/Paths/Output"]
+margin_left = 100.0
+margin_right = 599.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+hint_tooltip = "Path to input base palette."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "res://"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 5 )
+path_type = 0
+
+[node name="Button" type="Button" parent="ScrollContainer/Swap/GenerateSwapPalettes"]
+margin_left = 609.0
+margin_top = 21.0
+margin_right = 680.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_vertical = 4
+text = "Generate"
+
+[node name="InvalidPathPopup" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 123.0
+margin_bottom = 58.0
+window_title = "Invalid path"
+resizable = true
+script = ExtResource( 6 )
