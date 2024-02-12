@@ -3,10 +3,12 @@ extends EditorPlugin
 
 const ExtractPalettePopup = preload("res://addons/colorful-palette-swap/panel/popup_extract_palette.tscn")
 const SwappablePalettePopup = preload("res://addons/colorful-palette-swap/panel/popup_swappable_palette.tscn")
+const RecolorImagePopup = preload("res://addons/colorful-palette-swap/panel/popup_recolor_image.tscn")
 const bar_scene = preload("res://addons/colorful-palette-swap/panel/palette_commands.tscn")
 
 const MENUITEM_EXTRACT_PALETTE := "Extract Palette"
 const MENUITEM_SWAPPABLE_PALETTE := "Create Swap Palettes"
+const MENUITEM_RECOLOR_IMAGE := "Recolor Image"
 
 var bar
 var bar_btn: ToolButton
@@ -23,6 +25,7 @@ func _enter_tree():
 
 	add_tool_menu_item(MENUITEM_EXTRACT_PALETTE, self, "_extract_palette")
 	add_tool_menu_item(MENUITEM_SWAPPABLE_PALETTE, self, "_swappable_palette")
+	add_tool_menu_item(MENUITEM_RECOLOR_IMAGE, self, "_recolor_image")
 
 
 func _show_popup(popup: WindowDialog, title: String) -> WindowDialog:
@@ -57,12 +60,21 @@ func _swappable_palette(__):
 	swappable_palette.connect("process_complete", self, "_on_process_complete")
 
 
+func _recolor_image(__):
+	var source_image_path := get_editor_interface().get_current_path()
+	var popup := _show_popup(RecolorImagePopup.instance(), MENUITEM_RECOLOR_IMAGE)
+	var swappable_palette = popup.get_node("%RecolorImage")
+	swappable_palette.target_path_node.set_path_and_validate(source_image_path)
+	swappable_palette.connect("process_complete", self, "_on_process_complete")
+
+
 func _exit_tree():
 	if bar:
 		remove_control_from_bottom_panel(bar)
 		bar.queue_free()
 	remove_tool_menu_item(MENUITEM_EXTRACT_PALETTE)
 	remove_tool_menu_item(MENUITEM_SWAPPABLE_PALETTE)
+	remove_tool_menu_item(MENUITEM_RECOLOR_IMAGE)
 
 
 func _on_process_complete(output_filepath: String):
