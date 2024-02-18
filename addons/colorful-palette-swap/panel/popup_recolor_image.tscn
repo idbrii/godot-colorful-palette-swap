@@ -7,7 +7,6 @@
 [ext_resource path="res://addons/colorful-palette-swap/code/invalid_path_popup.gd" type="Script" id=6]
 
 [node name="SwappablePalettePopup" type="WindowDialog"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -324.0
@@ -61,7 +60,7 @@ size_flags_vertical = 3
 [node name="Input" parent="ScrollContainer/Swap/RecolorImage/Paths" instance=ExtResource( 4 )]
 margin_right = 610.0
 label = "Target"
-path_tooltip = "Path to recolor."
+path_tooltip = "Image to recolor. Will preserve alpha."
 
 [node name="FromColor" type="HBoxContainer" parent="ScrollContainer/Swap/RecolorImage/Paths"]
 margin_top = 28.0
