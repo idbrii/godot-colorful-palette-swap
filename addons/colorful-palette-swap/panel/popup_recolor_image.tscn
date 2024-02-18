@@ -11,7 +11,7 @@ visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -324.0
-margin_bottom = -377.0
+margin_bottom = -331.0
 rect_min_size = Vector2( 700, 150 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -32,7 +32,7 @@ scroll_vertical_enabled = false
 
 [node name="Swap" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 680.0
-margin_bottom = 221.0
+margin_bottom = 273.0
 rect_min_size = Vector2( 350, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -46,7 +46,7 @@ text = "Recolor Image"
 unique_name_in_owner = true
 margin_top = 18.0
 margin_right = 680.0
-margin_bottom = 203.0
+margin_bottom = 255.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -54,7 +54,7 @@ script = ExtResource( 1 )
 
 [node name="Paths" type="VBoxContainer" parent="ScrollContainer/Swap/RecolorImage"]
 margin_right = 610.0
-margin_bottom = 185.0
+margin_bottom = 237.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -115,20 +115,37 @@ margin_right = 610.0
 margin_bottom = 185.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+
+[node name="Palette" parent="ScrollContainer/Swap/RecolorImage/Paths" instance=ExtResource( 4 )]
+margin_top = 189.0
+margin_right = 610.0
+margin_bottom = 213.0
+label = "Palette"
+path_tooltip = "Optional. Path to a palette for easier color picking."
+
+[node name="PalettePreview" type="TextureRect" parent="ScrollContainer/Swap/RecolorImage/Paths"]
+margin_top = 217.0
+margin_right = 610.0
+margin_bottom = 237.0
+rect_min_size = Vector2( 100, 20 )
+expand = true
+stretch_mode = 6
 
 [node name="Button" type="Button" parent="ScrollContainer/Swap/RecolorImage"]
 margin_left = 620.0
-margin_top = 57.0
+margin_top = 83.0
 margin_right = 680.0
-margin_bottom = 127.0
+margin_bottom = 153.0
 rect_min_size = Vector2( 0, 70 )
 size_flags_vertical = 4
 text = "Recolor"
 
 [node name="Output" type="Label" parent="ScrollContainer/Swap"]
-margin_top = 207.0
+margin_top = 259.0
 margin_right = 680.0
-margin_bottom = 221.0
+margin_bottom = 273.0
 align = 2
 
 [node name="InvalidPathPopup" type="AcceptDialog" parent="."]

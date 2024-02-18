@@ -12,21 +12,23 @@ const sizeX = 100
 
 onready var target_path_node := $Paths/Input as EditorPathInput
 onready var image_preview := $Paths/ImagePreview as TextureRect
+onready var palette_path_node := $Paths/Palette as EditorPathInput
+onready var palette_preview := $Paths/PalettePreview as TextureRect
 
 
 
 func _ready():
 	$Button.connect("pressed", self, "_button_pressed")
-	target_path_node.get_node("PathValue").connect("path_changed", self, "_on_imagepath_changed")
-	_on_imagepath_changed("")
+	target_path_node.get_node("PathValue").connect("path_changed", self, "_on_imagepath_changed", [target_path_node, image_preview])
+	palette_path_node.get_node("PathValue").connect("path_changed", self, "_on_imagepath_changed", [palette_path_node, palette_preview])
+	_on_imagepath_changed("", target_path_node, image_preview)
 
 
-func _on_imagepath_changed(_text):
-	if target_path_node.is_valid():
-		image_preview.texture = load(target_path_node.get_path())
-		image_preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+func _on_imagepath_changed(_path, path_node, target_preview):
+	if path_node.is_valid():
+		target_preview.texture = load(path_node.get_path())
 	else:
-		image_preview.texture = null
+		target_preview.texture = null
 
 
 func _button_pressed():

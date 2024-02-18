@@ -25,7 +25,6 @@ rect_min_size = Vector2( 100, 23.157 )
 hint_tooltip = "A file path."
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "res://image.png"
 caret_blink = true
 caret_blink_speed = 0.5
 script = ExtResource( 1 )
