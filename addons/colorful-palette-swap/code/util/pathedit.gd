@@ -1,7 +1,8 @@
 tool
 extends LineEdit
 
-signal validity_changed(new_valid);
+signal validity_changed(new_valid)
+signal path_changed(new_path)
 
 enum PathType {
 	EXISTING_DIRECTORY,
@@ -60,6 +61,8 @@ func _on_text_changed(new_text):
 	if old_valid != _is_valid:
 		emit_signal("validity_changed", _is_valid)
 
+	self.emit_signal("path_changed", self.get_path())
+
 
 func get_path():
 	var path = text
@@ -78,5 +81,5 @@ func is_valid():
 # text_changed, so use this to ensure validation updates.
 func set_path_and_validate(new_path):
 	self.text = new_path
-	# Assignment doesn't always trigger text_changed, so call manually.
-	_on_text_changed(self.text)
+	# Assignment doesn't always trigger text_changed, so trigger manually.
+	self.emit_signal("text_changed", self.text)

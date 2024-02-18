@@ -11,11 +11,22 @@ const EditorPathInput = preload("res://addons/colorful-palette-swap/panel/editor
 const sizeX = 100
 
 onready var target_path_node := $Paths/Input as EditorPathInput
+onready var image_preview := $Paths/ImagePreview as TextureRect
 
 
 
 func _ready():
 	$Button.connect("pressed", self, "_button_pressed")
+	target_path_node.get_node("PathValue").connect("path_changed", self, "_on_imagepath_changed")
+	_on_imagepath_changed("")
+
+
+func _on_imagepath_changed(_text):
+	if target_path_node.is_valid():
+		image_preview.texture = load(target_path_node.get_path())
+		image_preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	else:
+		image_preview.texture = null
 
 
 func _button_pressed():
