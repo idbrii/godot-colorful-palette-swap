@@ -2,9 +2,10 @@
 
 A way to make palette swaps while authoring your base palette in full colour.
 
-Adds two entries to the Project > Tools menu:
+Adds entries to the Project > Tools menu:
 1. Extract Palette
 2. Create Swap Palettes
+3. Recolor Image
 
 
 # Extract Palette
@@ -104,3 +105,12 @@ stupid to find :D
 
 -blippinbits
 
+
+# Recolor Image
+
+Select an image, pick a source and destination colour, and change all pixels
+(perserving alpha) to match. Allows you to make simple colour changes in pixel
+art. Not very useful in images with many colours.
+
+You can also select a palette to make choosing colours easier (but it doesn't
+automatically do anything with the palette).
