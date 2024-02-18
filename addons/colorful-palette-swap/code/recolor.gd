@@ -39,7 +39,7 @@ func _button_pressed():
 			target_path_node.get_path(),
 			color_from,
 			color_to)
-		$Paths/Output.text = msg
+		get_parent().get_node("Output").text = msg
 		emit_signal("process_complete", target_path_node.get_path())
 
 
